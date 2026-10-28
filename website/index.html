@@ -453,20 +453,18 @@
         }
 
         async function fetchWeather() {
-            const latest = [...localReadings].reverse().find(r => r.latitude != null);
-            const lat = latest ? latest.latitude : null;
-            const lon = latest ? latest.longitude : null;
-            const url = (lat && lon) ? `https://wttr.in/${lat},${lon}?format=j1` : `https://wttr.in/?format=j1`;
             try {
-                const res = await fetch(url);
+                // Fetch regional weather without leaking precise device GPS coordinates to 3rd party services
+                const res = await fetch(`https://wttr.in/?format=j1`);
                 const data = await res.json();
                 const cur = data.current_condition[0];
+                const areaName = data.nearest_area && data.nearest_area[0] && data.nearest_area[0].areaName ? data.nearest_area[0].areaName[0].value : 'Field Region';
                 document.getElementById('weatherBody').innerHTML = `
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <div style="font-size:2.5rem; font-weight:700; color:var(--text);">${cur.temp_C}°C</div>
                         <div style="text-align:right;"><div style="color:var(--accent); font-weight:600;">${cur.weatherDesc[0].value}</div><div>Feels like ${cur.FeelsLikeC}°C</div></div>
                     </div>
-                    <div style="margin-top:15px; color:var(--text-muted); font-size:0.9rem;">📍 ${data.nearest_area[0].areaName[0].value}${lat ? ` (${lat.toFixed(2)}, ${lon.toFixed(2)})` : ''}</div>`;
+                    <div style="margin-top:15px; color:var(--text-muted); font-size:0.9rem;">📍 ${areaName}</div>`;
             } catch (e) {}
         }
 

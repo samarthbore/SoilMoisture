@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Professional IoT Theme Colors (Blynk/Clean Style) -->
+    
+    <!-- Core Accents (Neon, vibrant on dark backgrounds) -->
+    <color name="primary">#00E5FF</color>         <!-- Neon Cyan -->
+    <color name="primary_dark">#00B8D4</color>
+    <color name="primary_light">#84FFFF</color>
+    <color name="accent">#00E676</color>          <!-- Mint Green -->
+
+    <!-- Backgrounds (Deep, Pure Dark) -->
+    <color name="background">#000000</color>      <!-- Near Black for OLED pop -->
+    <color name="surface">#0A0A0A</color>         <!-- Sleek dark slate for cards -->
+    <color name="card_bg">#0A0A0A</color>
+    <color name="card_stroke">#222222</color>     <!-- Very subtle border -->
+
+    <!-- Text -->
+    <color name="text_primary">#F8FAFC</color>    <!-- Crisp white -->
+    <color name="text_secondary">#64748B</color>  <!-- Muted slate for clean look -->
+
+    <!-- Data / Status Colors -->
+    <color name="dry_red">#FF4655</color>         <!-- Vibrant Red -->
+    <color name="moderate_yellow">#FFC400</color> <!-- Bright Orange/Yellow -->
+    <color name="wet_green">#00E676</color>       <!-- Mint Green -->
+
+    <!-- Infrastructure -->
+    <color name="status_bar">#05080F</color>
+    <color name="button_bg">#00E5FF</color>
+    <color name="button_text">#05080F</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="divider">#1C263A</color>
+</resources>

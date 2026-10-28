@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:clipToPadding="false"
+        android:clipChildren="false">
+
+        <!-- ===== HEADER ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Soil Moisture" android:textAllCaps="true"
+                    android:textColor="@color/text_primary"
+                    android:textSize="28sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="-0.02" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/simulated_ir"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_launcher_foreground"
+                android:background="@drawable/blynk_card_bg"
+                android:padding="8dp"
+                android:contentDescription="App icon" />
+        </LinearLayout>
+
+        <!-- ===== CALIBRATION CARD ===== -->
+        <LinearLayout
+            android:id="@+id/calibrationCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blynk_card_bg"
+            
+            
+            
+            
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Section Title -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="🔬 Illumination Calibration"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="18sp" />
+
+                    <!-- Calibration status badge -->
+                    <TextView
+                        android:id="@+id/txtCalibStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Calibrated"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:background="@drawable/pill_bg"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Upload a reference white sheet (lab lighting) and a current white sheet (same scene lighting) to correct for illumination differences."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="2dp"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Step 1: Reference Sheet -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRefSheet"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="48dp"
+                        android:text="① Reference Sheet"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:textColor="@color/text_primary"
+                        app:cornerRadius="24dp"
+                        
+                        
+                        app:icon="@android:drawable/ic_menu_gallery"
+                        app:iconSize="18dp"
+                        app:iconTint="@color/text_secondary" />
+
+                    <TextView
+                        android:id="@+id/txtRefStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  ⬜"
+                        android:textSize="20sp"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <!-- Step 2: Current Sheet -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCurSheet"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="48dp"
+                        android:text="② Current Sheet"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:textColor="@color/text_primary"
+                        app:cornerRadius="24dp"
+                        
+                        
+                        app:icon="@android:drawable/ic_menu_gallery"
+                        app:iconSize="18dp"
+                        app:iconTint="@color/text_secondary" />
+
+                    <TextView
+                        android:id="@+id/txtCurStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  ⬜"
+                        android:textSize="20sp"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <!-- Calibrate button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCalibrate"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Calibrate"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true"
+                    app:backgroundTint="#6B7280"
+                    android:textColor="@color/white"
+                    app:cornerRadius="24dp"
+                    android:enabled="false"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Diagnostics (shown after calibration) -->
+                <TextView
+                    android:id="@+id/txtCalibDiag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:background="@drawable/pill_bg"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp" />
+
+                <!-- Corrected Sheet Slider Preview (shown after calibration) -->
+                <LinearLayout
+                    android:id="@+id/sheetPreviewSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sheet Correction — Slide to Compare"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        
+                        
+                        
+                        app:cardBackgroundColor="@color/background">
+
+                        <com.irsoil.moisturedetector.ComparisonSliderView
+                            android:id="@+id/sheetSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== IMAGE PREVIEW CARD ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blynk_card_bg"
+            
+            
+            
+            
+            android:layout_marginBottom="20dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imagePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Soil image preview" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/image_gradient_overlay" />
+
+                <!-- Placeholder -->
+                <LinearLayout
+                    android:id="@+id/placeholderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:tint="@color/text_secondary"
+                        android:layout_marginBottom="16dp"
+                        android:alpha="0.5"
+                        android:contentDescription="Camera icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_image_selected"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tap_to_upload"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:layout_marginTop="6dp"
+                        android:alpha="0.7" />
+                </LinearLayout>
+
+                <!-- Upload Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUpload"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:text="@string/upload_image"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true"
+                    app:backgroundTint="@color/button_bg"
+                    android:textColor="@color/white"
+                    app:cornerRadius="28dp"
+                    app:icon="@android:drawable/ic_menu_gallery"
+                    app:iconTint="@color/white"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:elevation="8dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- ===== CORRECTED SOIL SLIDER CARD ===== -->
+        <LinearLayout
+            android:id="@+id/correctedSoilCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blynk_card_bg"
+            
+            
+            
+            
+            android:layout_marginBottom="20dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🖼️ Soil Image — Slide to Compare"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    
+                    
+                    app:cardBackgroundColor="@color/background">
+
+                    <com.irsoil.moisturedetector.ComparisonSliderView
+                        android:id="@+id/soilSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== AVERAGE MOISTURE CARD ===== -->
+        <LinearLayout
+            android:id="@+id/moistureCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blynk_card_bg"
+            
+            
+            
+            
+            android:layout_marginBottom="20dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average_moisture"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.15" />
+
+                <TextView
+                    android:id="@+id/txtMoisturePercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0%"
+                    android:textColor="@color/primary_light"
+                    android:textSize="64sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/txtMoistureStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/txtTempRange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Simulated Temp Range: --"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/pill_bg"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== HEATMAP CARD ===== -->
+        <LinearLayout
+            android:id="@+id/heatmapCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blynk_card_bg"
+            
+            
+            
+            
+            android:layout_marginBottom="20dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Title row -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/heatmap_title"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Mode toggle: Per-Pixel | Grid -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:checkedButton="@+id/btnPixelMode">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPixelMode"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="Per-Pixel (IR)"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:textColor="@color/text_primary"
+                         />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnGridMode"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="10×10 Grid"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:textColor="@color/text_primary"
+                         />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- Overlay toggle -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOverlay"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Overlay on Image"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true"
+                    android:textColor="@color/accent"
+                    
+                    
+                    
+                    app:icon="@android:drawable/ic_menu_slideshow"
+                    app:iconSize="16dp"
+                    app:iconTint="@color/accent"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Touch hint (only for pixel mode) -->
+                <TextView
+                    android:id="@+id/txtTouchHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="👆 Touch the heatmap to inspect moisture"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:visibility="visible" />
+
+                <!-- Heatmap view -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    
+                    
+                    app:cardBackgroundColor="@color/background">
+
+                    <com.irsoil.moisturedetector.HeatmapView
+                        android:id="@+id/heatmapView"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== LEGEND CARD ===== -->
+        <LinearLayout
+            android:id="@+id/legendCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blynk_card_bg"
+            
+            
+            
+            
+            android:layout_marginBottom="32dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/txtLegendTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/legend_title"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Grid legend (3-color) -->
+                <LinearLayout
+                    android:id="@+id/gridLegend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:weightSum="3"
+                    android:visibility="gone">
+
+                    <!-- Dry -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardBackgroundColor="@color/dry_red"
+                            
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dry_label"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+
+                    <!-- Moderate -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardBackgroundColor="@color/moderate_yellow"
+                            
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/moderate_label"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+
+                    <!-- Wet -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardBackgroundColor="@color/wet_green"
+                            
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/wet_label"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Pixel legend (IR thermal gradient bar) -->
+                <LinearLayout
+                    android:id="@+id/pixelLegend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <!-- Gradient bar -->
+                    <View
+                        android:id="@+id/gradientBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="0% Dry (Hot)"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50%"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="100% Wet (Cool)"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="end" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+

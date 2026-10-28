@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Thermometer body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,28 C51.8,28 50,29.8 50,32 L50,62 C47,64 45,67.2 45,71 C45,76 49,80 54,80 C59,80 63,76 63,71 C63,67.2 61,64 58,62 L58,32 C58,29.8 56.2,28 54,28 Z" />
+
+    <!-- Mercury fill -->
+    <path
+        android:fillColor="#F44336"
+        android:pathData="M52,45 L52,65 C49.5,66 48,68.3 48,71 C48,74.3 50.7,77 54,77 C57.3,77 60,74.3 60,71 C60,68.3 58.5,66 56,65 L56,45 Z" />
+
+    <!-- Water drop -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M72,45 C72,45 68,52 68,55 C68,57.2 69.8,59 72,59 C74.2,59 76,57.2 76,55 C76,52 72,45 72,45 Z" />
+</vector>

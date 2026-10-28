@@ -1,0 +1,23 @@
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+*.jks
+*.keystore
+
+# Sensitive credentials & API configuration
+google-services.json
+**/google-services.json
+website/config.js
+**/config.js
+!website/config.example.js
+
+# Built application files
+**/build/

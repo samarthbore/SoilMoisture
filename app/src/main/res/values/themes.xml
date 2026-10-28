@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme (Dark Material 3) -->
+    <style name="Theme.IRSoilMoistureDetector" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <!-- Use system fonts for sleeker look -->
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+</resources>
